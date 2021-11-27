@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+
+</head>
+<body>
+    <div>
+        <button>SELECT AREA</button>
+        <button>SELECT Date From</button>
+        <button>SELECT Date TO</button>
+        <button>View</button>
+    </div>
+
+  
+
+    <div style="width: 500px;height: 500px">
+    <canvas id="myChart" width="400" height="400"></canvas>
+    
+	</div>
+
+    <div class="table-data">
+
+    <table border="1">
+        <tr>
+            <th>BRAND</th>
+            <th>DKI Jakarta</th>
+            <th>Jawa Barat</th>
+            <th>Kalimantan</th>
+            <th>Jawa Tengah</th>
+            <th>Bali</th>
+        </tr>
+        
+        <%
+        if(listData.length!=0){
+        var i=1;
+        listData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.brand_name %></td>
+            <td><%=data.total_persen %></td>
+            <td><%=data.total_persen %></td>
+            <td><%=data.total_persen %></td>
+            <td><%=data.total_persen %></td>
+            <td><%=data.total_persen %></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+
+</body>
+
+<script>
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['DKI Jakarta', 'Jawa Tengah', 'Kalimantan', 'Jawa Barat', 'Bali'],
+          datasets: [{
+              label: '#',
+              data: [48, 48, 48, 48, 48],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+  </script>
+
+</html>
